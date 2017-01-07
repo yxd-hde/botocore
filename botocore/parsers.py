@@ -232,7 +232,7 @@ class ResponseParser(object):
         # To prevent this case from happening we first need to check
         # whether or not this response looks like the generic response.
         if response['status_code'] >= 500:
-            body = response['body'].strip()
+            body = response['body'] or response['body'].strip()
             return body.startswith(b'<html>') or not body
 
     def _do_generic_error_parse(self, response):
